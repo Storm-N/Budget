@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: religion-class-attendance
+    runtime: node
+    plan: starter
+    buildCommand: node --check server.js
+    startCommand: node server.js
+    healthCheckPath: /
+    disk:
+      name: attendance-data
+      mountPath: /opt/render/project/src/storage
+      sizeGB: 1
+    envVars:
+      - key: CLASS_TIME_ZONE
+        value: America/Denver
+      - key: ATTENDANCE_FILE
+        value: /opt/render/project/src/storage/attendance.json
